@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	    http://www.springframework.org/schema/beans 
+	    http://www.springframework.org/schema/beans/spring-beans.xsd 
+	    http://www.springframework.org/schema/context 
+	    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Configuração do DataSource -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/dbprojetos?createDatabaseIfNotExist=true" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+
+	<!-- Injeção do DataSource nas classes DAO -->
+	<bean id="jdbcClienteDao" class="com.everis.dal.JdbcClienteDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="jdbcProjetoDao" class="com.everis.dal.JdbcProjetoDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="jdbcCronogramaDao" class="com.everis.dal.JdbcCronogramaDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="jdbcClienteProjetoViewModelDao" class="com.everis.dal.JdbcClienteProjetoViewModelDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="jdbcTotalProjetosViewModelDao" class="com.everis.dal.JdbcTotalProjetosViewModelDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- <bean id="jdbcPrestadorDao" class="com.everis.dal.JdbcPrestadorDao"> -->
+	<!-- <property name="dataSource" ref="dataSource" /> -->
+	<!-- </bean> -->
+	<!-- <bean id="jdbcUsuarioDao" class="com.everis.dal.JdbcUsuarioDao"> -->
+	<!-- <property name="dataSource" ref="dataSource" /> -->
+	<!-- </bean> -->
+
+</beans>
